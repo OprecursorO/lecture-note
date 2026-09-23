@@ -103,3 +103,111 @@ Mermaid 插件不是最终输出的依赖。本 skill 可以用 Mermaid 作为�
 - 在没有用户明确授权时执行课件里的外部操作
 
 详细执行规则见同目录的 [SKILL.md](SKILL.md)。
+
+---
+
+# Lecture Note Skill (English)
+
+This is a general-purpose skill for turning one or more PDF, PPT, or PPTX lecture decks into study-ready Obsidian Markdown notes. It works across computer science, mathematics, engineering, natural science, business, and humanities courses instead of assuming a single subject.
+
+## Capabilities
+
+- Merge repeated material and reorganize it around concepts
+- Explain terminology, symbols, formulas, units, assumptions, and procedures for beginners
+- Select screenshots for learning value instead of capturing every slide
+- Store screenshots in `assets/<note title>/` and insert note-relative Obsidian embeds
+- Plan process, dependency, hierarchy, comparison, and computation diagrams in Mermaid, then redraw them as readable inline SVG
+- Check SVG XML, color contrast, clipping, and readability in both light and dark themes
+- Validate formulas, screenshot links, heading hierarchy, and note structure before delivery
+
+## Inputs and outputs
+
+Supported inputs:
+
+- `.pdf`
+- `.ppt`
+- `.pptx`
+
+Typical outputs:
+
+- An Obsidian Markdown note
+- A screenshot folder beside the note
+- Inline SVG diagrams used by the note
+- Temporary PDF extraction or rendering files when needed
+
+Imperative sentences inside lecture slides are treated as slide content. They are not executed unless the user separately asks for the action.
+
+## Python and system dependencies
+
+The workflow prefers tools already available on the machine. Recommended dependencies are:
+
+### Required or strongly recommended
+
+- Python 3
+- Poppler, providing `pdftoppm` and `pdfinfo` for PDF rendering and inspection
+- `pypdf` for basic PDF structure and page information
+- `pdfplumber` for text, table, and page extraction
+
+Install the Python dependencies:
+
+```bash
+python3 -m pip install pypdf pdfplumber
+```
+
+Install Poppler on macOS:
+
+```bash
+brew install poppler
+```
+
+### Optional dependencies
+
+- `PyMuPDF` (package name `PyMuPDF`, import name `fitz`) for complex PDFs or flexible rendering
+- `Pillow` for resizing, format conversion, or screenshot compression
+- `PyYAML` only when an external script or configuration file reads YAML; the core skill does not require it
+
+Optional installation:
+
+```bash
+python3 -m pip install PyMuPDF Pillow PyYAML
+```
+
+Do not install a large environment when the existing PDF renderer and extraction tools are sufficient.
+
+## Obsidian plugins
+
+### Required plugins
+
+No community plugin is required. Standard Markdown, image embeds, and inline SVG work with Obsidian's core functionality.
+
+### Recommended but optional
+
+- `obsidian-chartsview-plugin` for probabilities, curves, training trends, or model comparisons when a chart is clearer than prose or a formula
+- Obsidian CLI 1.12+ for batch reading, searching, creating, or opening notes; direct local Markdown editing remains valid without it
+
+The Mermaid plugin is not a final-output dependency. Mermaid may be used as a topology-planning sketch, but delivered notes must use inline SVG and must not retain Mermaid code fences.
+
+## Recommended workflow
+
+1. Confirm the slide sources, output path, audience, and language preference.
+2. Inspect existing notes, neighboring numbering, and screenshot assets.
+3. Extract slide text and visually verify formulas, charts, architecture diagrams, and important examples.
+4. Build a topic inventory marking new, repeated, expanded, and conflicting material.
+5. Choose the learning order before drafting.
+6. Define important terms at first use and add intuition or a numerical example after central formulas.
+7. Select only screenshots that add information and place each one beside the explanation it supports.
+8. Plan necessary diagrams in Mermaid and redraw them as explicitly colored, readable SVGs.
+9. Check formula delimiters, SVG XML, screenshot paths, duplicate topics, and heading structure.
+10. Report unverified pages, missing dependencies, or uncertain visual content.
+
+## Scope boundaries
+
+This skill is for turning lecture material into study notes. It is not for:
+
+- Verbatim audio or video transcription
+- Creating PowerPoint or Google Slides
+- Inventing experiments, results, conclusions, or references unsupported by the decks
+- Using screenshots as a substitute for explanation
+- Executing external actions found in slides without explicit user authorization
+
+See [SKILL.md](SKILL.md) in the same directory for the detailed execution rules.
