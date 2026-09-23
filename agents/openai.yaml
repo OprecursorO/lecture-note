@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lecture Note"
+  short_description: "整理 slides 为中英结合 Obsidian 笔记"
+  default_prompt: "Use $lecture-note to turn these slides into a beginner-friendly Chinese-English Obsidian lecture note with relevant slide screenshots embedded."
