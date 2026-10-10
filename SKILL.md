@@ -17,10 +17,11 @@ Lecture notes are not only archives of slide content; they should guide a learne
 2. **Motivate**: begin with the problem, question, phenomenon, or task that makes the concept necessary. Explain what limitation the new idea addresses before introducing its terminology.
 3. **Build intuition**: give a plain-language explanation, analogy, diagram, or physical interpretation. Keep it explicitly marked as an intuition when it is not a literal mechanism.
 4. **Work a minimum example**: include the smallest faithful example that lets the learner see the process from input to result. For quantitative subjects, show intermediate steps; for conceptual subjects, use a concrete case; for procedural subjects, show one complete workflow.
-5. **Formalize**: introduce the source's standard terminology, notation, definitions, rules, equations, or mechanisms only after the learner has a mental model. Translate each symbol or step into an action or meaning immediately.
-6. **Connect and contrast**: explain how the new idea relates to prerequisite knowledge and distinguish commonly confused concepts. Merge repeated source material instead of restating it in separate blocks.
-7. **Check understanding**: end substantial sections with a few active-recall questions or a tiny task, followed by concise answers or a way to verify the result. Prefer questions that reveal whether the learner can use the idea, not only recognize its definition.
-8. **Bridge forward**: state what the learner can now understand next and which details can safely wait. Do not overload beginners with advanced edge cases before the core mechanism is secure.
+5. **Preserve slide cases**: scan the source for explicit case studies, worked examples, toy arrays, before/after comparisons, pseudo-code examples, named system flows, and numerical scenarios. Include every case that materially teaches a concept, either inline or as a concise case box. Do not replace a source case with a generic invented example. If a case is too dense, preserve its setup, key intermediate values, result, and lesson rather than copying the whole slide.
+6. **Formalize**: introduce the source's standard terminology, notation, definitions, rules, equations, or mechanisms only after the learner has a mental model. Translate each symbol or step into an action or meaning immediately.
+7. **Connect and contrast**: explain how the new idea relates to prerequisite knowledge and distinguish commonly confused concepts. Merge repeated source material instead of restating it in separate blocks.
+8. **Check understanding**: end substantial sections with a few active-recall questions or a tiny task, followed by concise answers or a way to verify the result. Prefer questions that reveal whether the learner can use the idea, not only recognize its definition.
+9. **Bridge forward**: state what the learner can now understand next and which details can safely wait. Do not overload beginners with advanced edge cases before the core mechanism is secure.
 
 Use the full ladder for a difficult or unfamiliar topic, and a compressed version for short or already-familiar material. Do not invent examples that change the source's claims: label teaching examples, analogies, and background additions clearly, and keep them consistent with the source.
 
@@ -40,6 +41,7 @@ Use the full ladder for a difficult or unfamiliar topic, and a compressed versio
 ### 2. Extract the slides faithfully
 
 - Read slide text, formulas, diagrams, captions, examples, and section order. For PDFs or visually important decks, render pages/slides when text extraction alone could miss a diagram, equation, or relationship.
+- Build a case inventory while extracting: record each slide/page containing a worked calculation, explicit numerical example, named deployment flow, comparison case, or before/after transformation. Mark whether it is already represented in the note, needs integration, or needs a screenshot.
 - Select screenshots by learning value: render and embed pages whose original layout, worked example, architecture, chart, or annotated process adds information that prose cannot preserve as clearly. Do not screenshot every slide or use screenshots instead of explaining the material.
 - For PDFs, use an available renderer (such as `pdftoppm`) to export selected pages as PNGs. Use descriptive stable names that include a short source identifier and page number, such as `NNII-15.png`, `thermo-08.png`, or `history-12.png`, and save them under `assets/<note title>/` beside the note.
 - Insert each screenshot immediately after the explanation it supports using an Obsidian embed, for example `![[assets/2 Neural Network/NNII-15.png]]`. Keep links relative to the note; do not reference temporary render folders or machine-specific absolute paths. Mention unreadable or uncertain visual content rather than guessing.
@@ -175,19 +177,20 @@ This workflow is optional and complementary to `chartsview`: Python or JavaScrip
 Check the actual output, not just the draft:
 
 1. Every major slide topic is represented, and no important limitation or assumption was lost.
-2. Repeated concepts appear once in the main learning path; overlapping decks are integrated rather than stacked.
-3. Heading levels and numbering form one readable hierarchy.
-4. Display-math delimiters `$$...$$` are balanced, inline-math delimiters `$...$` are balanced, and there are no accidental `\[`/`\]` blocks.
-5. Search for formula-like code spans and repair them: subscripts/superscripts such as `x_i`, `x^(l)`, `y-hat_i`, Greek/error symbols such as `delta_v`, and operators such as `w^T x`, `argmax`, `partial`, and `ReLU` must render as math when they are equations.
-6. Check that math delimiters are not nested inside backticks or fenced code blocks, and that display formulas use valid Obsidian MathJax commands such as `\mathbf`, `\frac`, `\partial`, `\sum`, `\operatorname`, `\begin{cases}`, and `\delta`.
-7. Symbols, terminology, and capitalization are consistent, and professional terms remain in English as requested.
-8. Important technical terms are explained at first use with their meaning and role, especially terms that a beginner cannot infer from the English name alone.
-9. The note follows an appropriate teaching ladder: it states learning outcomes, motivates the topic, builds intuition, includes a minimum faithful example, then formalizes; difficult sections include retrieval questions and a forward bridge.
-10. The note is understandable to the stated audience without requiring hidden context, while additions beyond the slides are clearly background rather than presented as slide claims.
-11. Verify that every diagram is inline SVG, parses as valid XML, represents a useful relationship, and does not duplicate or contradict its explanation. Confirm no Mermaid code blocks remain.
-12. If a `chartsview` block was added, parse-check its YAML-like configuration, confirm that `type`, `data`, `xField`, and `yField` are coherent, and verify that every displayed quantity is grounded in the slides or explicitly labeled as an idealized teaching example.
-13. If external code or data was created, verify that the script path, output path, delimiter/encoding, column meanings, and import format are clear; do not claim that user-side execution succeeded unless the user provides the generated output.
-14. Confirm every screenshot uses a note-relative Obsidian wikilink, points to an existing image beside the note, and sits next to relevant explanation. The destination file exists and contains the integrated result. Report any extraction uncertainty or unverified visual content to the user.
+2. Every explicit slide case, worked example, toy numerical scenario, before/after comparison, and named deployment flow that materially teaches a concept is represented or consciously marked as omitted with a reason.
+3. Repeated concepts appear once in the main learning path; overlapping decks are integrated rather than stacked.
+4. Heading levels and numbering form one readable hierarchy.
+5. Display-math delimiters `$$...$$` are balanced, inline-math delimiters `$...$` are balanced, and there are no accidental `\[`/`\]` blocks.
+6. Search for formula-like code spans and repair them: subscripts/superscripts such as `x_i`, `x^(l)`, `y-hat_i`, Greek/error symbols such as `delta_v`, and operators such as `w^T x`, `argmax`, `partial`, and `ReLU` must render as math when they are equations.
+7. Check that math delimiters are not nested inside backticks or fenced code blocks, and that display formulas use valid Obsidian MathJax commands such as `\mathbf`, `\frac`, `\partial`, `\sum`, `\operatorname`, `\begin{cases}`, and `\delta`.
+8. Symbols, terminology, and capitalization are consistent, and professional terms remain in English as requested.
+9. Important technical terms are explained at first use with their meaning and role, especially terms that a beginner cannot infer from the English name alone.
+10. The note follows an appropriate teaching ladder: it states learning outcomes, motivates the topic, builds intuition, includes a minimum faithful example, then formalizes; difficult sections include retrieval questions and a forward bridge.
+11. The note is understandable to the stated audience without requiring hidden context, while additions beyond the slides are clearly background rather than presented as slide claims.
+12. Verify that every diagram is inline SVG, parses as valid XML, represents a useful relationship, and does not duplicate or contradict its explanation. Confirm no Mermaid code blocks remain.
+13. If a `chartsview` block was added, parse-check its YAML-like configuration, confirm that `type`, `data`, `xField`, and `yField` are coherent, and verify that every displayed quantity is grounded in the slides or explicitly labeled as an idealized teaching example.
+14. If external code or data was created, verify that the script path, output path, delimiter/encoding, column meanings, and import format are clear; do not claim that user-side execution succeeded unless the user provides the generated output.
+15. Confirm every screenshot uses a note-relative Obsidian wikilink, points to an existing image beside the note, and sits next to relevant explanation. The destination file exists and contains the integrated result. Report any extraction uncertainty or unverified visual content to the user.
 
 ## Output behavior
 
