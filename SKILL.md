@@ -15,13 +15,45 @@ Lecture notes are not only archives of slide content; they should guide a learne
 
 1. **Orient**: state the learner level, prerequisites, the purpose of the topic, and a small set of concrete outcomes. Tell the learner what they should be able to explain, calculate, compare, or do after the section.
 2. **Motivate**: begin with the problem, question, phenomenon, or task that makes the concept necessary. Explain what limitation the new idea addresses before introducing its terminology.
-3. **Build intuition**: give a plain-language explanation, analogy, diagram, or physical interpretation. Keep it explicitly marked as an intuition when it is not a literal mechanism.
-4. **Work a minimum example**: include the smallest faithful example that lets the learner see the process from input to result. For quantitative subjects, show intermediate steps; for conceptual subjects, use a concrete case; for procedural subjects, show one complete workflow.
-5. **Preserve slide cases**: scan the source for explicit case studies, worked examples, toy arrays, before/after comparisons, pseudo-code examples, named system flows, and numerical scenarios. Include every case that materially teaches a concept, either inline or as a concise case box. Do not replace a source case with a generic invented example. If a case is too dense, preserve its setup, key intermediate values, result, and lesson rather than copying the whole slide.
-6. **Formalize**: introduce the source's standard terminology, notation, definitions, rules, equations, or mechanisms only after the learner has a mental model. Translate each symbol or step into an action or meaning immediately.
-7. **Connect and contrast**: explain how the new idea relates to prerequisite knowledge and distinguish commonly confused concepts. Merge repeated source material instead of restating it in separate blocks.
-8. **Check understanding**: end substantial sections with a few active-recall questions or a tiny task, followed by concise answers or a way to verify the result. Prefer questions that reveal whether the learner can use the idea, not only recognize its definition.
-9. **Bridge forward**: state what the learner can now understand next and which details can safely wait. Do not overload beginners with advanced edge cases before the core mechanism is secure.
+3. **Expose the design motivation progressively**: do not put all motivation in a single preliminary chapter. At the first useful point for each concept, use a gradient that moves from beginner-visible need to professional rationale: (a) a concrete problem the learner can imagine, (b) the limitation or failure without the concept, (c) the design choice or method, (d) the mechanism in the source's terminology, (e) the benefit and tradeoff, and (f) the connection to later sections or the whole system. Repeat this locally when a later section introduces a new design choice; do not repeat a generic motivation paragraph when the local constraint has changed.
+4. **Add experienced-practitioner lenses**: when a design choice or method has meaningful engineering tradeoffs, explain it from the relevant professional perspectives instead of presenting one universal rationale. Choose only the lenses that matter for the subject, such as hardware/implementation, compiler/software, memory/system, verification/reliability, performance/energy, user/workflow, or product/deployment. State what each practitioner is optimizing, what failure they worry about, and how that changes the decision. Do not force every lens into every section, and do not invent industry anecdotes or empirical claims that are not supported; label general professional reasoning as `Engineering perspective` or `Background` when it goes beyond the source.
+5. **Build intuition**: give a plain-language explanation, analogy, diagram, or physical interpretation immediately after the local motivation and before formal terminology. Keep it explicitly marked as an intuition when it is not a literal mechanism.
+6. **Work a minimum example**: include the smallest faithful example that lets the learner see the process from input to result. For quantitative subjects, show intermediate steps; for conceptual subjects, use a concrete case; for procedural subjects, show one complete workflow. Use the example to expose why the design choice helps, not merely to demonstrate syntax.
+7. **Preserve slide cases**: scan the source for explicit case studies, worked examples, toy arrays, before/after comparisons, pseudo-code examples, named system flows, and numerical scenarios. Include every case that materially teaches a concept, either inline or as a concise case box. Do not replace a source case with a generic invented example. If a case is too dense, preserve its setup, key intermediate values, result, and lesson rather than copying the whole slide.
+8. **Formalize**: introduce the source's standard terminology, notation, definitions, rules, equations, or mechanisms only after the learner has a mental model. Translate each symbol or step into an action or meaning immediately, and tie the formal object back to the local motivation.
+9. **Connect and contrast**: explain how the new idea relates to prerequisite knowledge and distinguish commonly confused concepts. Make the connection forward-looking: show which later problem the current design choice enables the learner to understand. Merge repeated source material instead of restating it in separate blocks.
+10. **Check understanding**: end substantial sections with a few active-recall questions or a tiny task, followed by concise answers or a way to verify the result. Prefer questions that reveal whether the learner can use the idea, not only recognize its definition. If the user asks for explanation without exercises, omit the questions while retaining the worked example.
+11. **Bridge forward**: state what the learner can now understand next and which details can safely wait. Do not overload beginners with advanced edge cases before the core mechanism is secure.
+
+### Motivation gradient and external background
+
+Use a **motivation gradient** across the note rather than a motivation dump:
+
+```text
+learner-visible problem
+  -> local limitation or failure
+  -> design choice
+  -> mechanism and professional term
+  -> benefit and tradeoff
+  -> connection to the next concept and the complete system
+```
+
+At the beginning of a chapter, give only a short orientation to the overall problem. At each later section, restart the gradient with the new local problem. Let the explanation become more technical as prerequisites accumulate: concrete example first, then resource/constraint language, then formal mechanism, then system-level consequences. Keep the professional explanation rigorous, but define every new term at first use so a beginner can follow the chain.
+
+For advanced motivation, use a **practitioner lens** only where it clarifies a real tradeoff:
+
+```text
+hardware/implementation: can the mechanism fit timing, area, ports, and control?
+compiler/software: can programmers and compilers express and schedule it?
+memory/system: where do data, bandwidth, synchronization, and consistency costs appear?
+verification/reliability: how will corner cases, compatibility, and failure modes be checked?
+performance/energy: what limits throughput, latency, and energy per useful result?
+product/deployment: what does the user or workload gain, and what ecosystem cost follows?
+```
+
+These are complementary viewpoints, not a demand for consensus. Present the beginner-facing explanation first, then add one or two relevant lenses in concise prose or a small table. Make clear when a lens is a general engineering perspective rather than a claim made by the source.
+
+When the slides omit background needed to explain a motivation or tradeoff, external research may be used if it materially improves understanding. Prefer primary or authoritative sources such as standards, official manuals, peer-reviewed papers, textbooks from the course, or official documentation. Search only for the missing context, verify the claim against the source where possible, and label the addition as `Background` or `External context`; do not let web material silently replace or contradict the lecture. Record concise source links or citations when external claims affect the note's explanation. If no reliable source is available, state the uncertainty instead of inventing a rationale.
 
 Use the full ladder for a difficult or unfamiliar topic, and a compressed version for short or already-familiar material. Do not invent examples that change the source's claims: label teaching examples, analogies, and background additions clearly, and keep them consistent with the source.
 
@@ -36,6 +68,8 @@ Use the full ladder for a difficult or unfamiliar topic, and a compressed versio
 - Read the immediately preceding numbered note before drafting. Reuse its established terminology, prerequisite links, and diagram conventions. Treat the preceding note as a living context: update or extend an existing diagram when the new slides continue the same relationship, instead of creating a near-duplicate.
 - If several decks cover the same lecture, make a topic inventory before writing. Record which topics are new, repeated, expanded, or conflicting in each deck; resolve overlap in the main learning path instead of appending decks mechanically.
 - Before drafting, make a teaching map for the stated audience: identify prerequisites, the first motivating problem, the minimum worked example or case, the formal layer, likely confusions, and a short retrieval check. Use this map to order the note rather than preserving slide order when slide order is not a good learning order.
+- Add a **motivation map** to the teaching map: for every major topic, record `local learner-visible problem -> constraint/failure -> design choice/method -> benefit -> tradeoff or boundary -> source case -> next concept`. Use it to place motivation at the point where the learner needs it, rather than collecting all rationale in one introductory chapter.
+- For topics with real engineering tradeoffs, add a **practitioner-lens map**: record which two or three perspectives matter, what each optimizes, and what failure or cost each perspective exposes. Use it to deepen the motivation without turning the note into unsupported industry storytelling.
 - For embedded screenshots, use a stable folder beside the note: `assets/<note title>/`. Check for existing files first and do not overwrite user-owned assets.
 
 ### 2. Extract the slides faithfully
@@ -78,6 +112,7 @@ Adapt the sequence to the actual course, but do not replace the lecturer's organ
 ### 4. Write for the stated audience
 
 - If the user is a beginner or gives no background, explain only the prerequisite ideas needed to understand the slides at the point of first use: vocabulary, symbols, units, assumptions, diagrams, formulas, procedures, and why each step is needed. For technical subjects, include shapes, dimensions, units, or algorithm inputs/outputs when they affect understanding.
+- For each major section, explain the local design motivation before the formal definition whenever the source supports it: start with a beginner-readable problem, show what would go wrong without the idea, introduce the chosen mechanism, and state its benefit plus at least one cost, assumption, or failure boundary. Reconnect the section to the next concept instead of repeating the chapter overview. If the source does not state a motivation, add only clearly labeled background, using the external-background rule above, and do not invent a rationale that changes the source's claim.
 - Add short intuition and at least one concrete numerical example for central formulas when the slides provide enough information to do so.
 - Distinguish the slide's main claim from a teaching aid. Label genuinely added background as `Background`, `Prerequisite`, or `Note` when useful.
 - Do not turn the note into a shallow summary: retain definitions, assumptions, important limitations, and the relationship between steps.
@@ -199,12 +234,15 @@ Check the actual output, not just the draft:
 8. Symbols, terminology, and capitalization are consistent, and professional terms remain in English as requested.
 9. Confirm that a term map exists for the major source vocabulary, and that each important professional term is explained at first meaningful use with both meaning and role. For dense vocabulary, confirm that a nearby terminology table or equivalent grouped glossary answers what the learner should look for or do with each term.
 10. For abstract or easily confused terms, confirm that the note includes an intuition, faithful example, input/output description, shape/unit/assumption, or explicit contrast rather than a translation-only definition.
-11. The note follows an appropriate teaching ladder: it states learning outcomes, motivates the topic, builds intuition, includes a minimum faithful example, then formalizes; difficult sections include retrieval questions and a forward bridge.
-12. The note is understandable to the stated audience without requiring hidden context, while additions beyond the slides are clearly background rather than presented as slide claims.
-13. Verify that every diagram is inline SVG, parses as valid XML, represents a useful relationship, and does not duplicate or contradict its explanation. Confirm no Mermaid code blocks remain.
-14. If a `chartsview` block was added, parse-check its YAML-like configuration, confirm that `type`, `data`, `xField`, and `yField` are coherent, and verify that every displayed quantity is grounded in the slides or explicitly labeled as an idealized teaching example.
-15. If external code or data was created, verify that the script path, output path, delimiter/encoding, column meanings, and import format are clear; do not claim that user-side execution succeeded unless the user provides the generated output.
-16. Confirm every screenshot uses a note-relative Obsidian wikilink, points to an existing image beside the note, and sits next to relevant explanation. The destination file exists and contains the integrated result. Report any extraction uncertainty or unverified visual content to the user.
+11. The note follows an appropriate teaching ladder: it states learning outcomes, introduces the overall problem briefly, then locally motivates each major concept, builds intuition, includes a minimum faithful example, and formalizes; difficult sections include a forward bridge.
+12. Motivation is distributed at the point of need and follows a visible gradient: `learner-visible problem -> local constraint/failure -> design choice -> mechanism -> benefit -> tradeoff/boundary -> next concept`. A single overview motivation does not count as coverage for all later sections.
+13. Where engineering tradeoffs matter, the note includes one or two relevant practitioner lenses, identifies what each optimizes, and avoids presenting a universal answer or unsupported industry anecdote.
+14. The note is understandable to the stated audience without requiring hidden context, while additions beyond the slides are clearly labeled background or external context rather than presented as slide claims.
+15. Any external claim used to explain a motivation or tradeoff is supported by a reliable source or marked uncertain; source links/citations are present when the claim materially affects the note.
+16. Verify that every diagram is inline SVG, parses as valid XML, represents a useful relationship, and does not duplicate or contradict its explanation. Confirm no Mermaid code blocks remain.
+17. If a `chartsview` block was added, parse-check its YAML-like configuration, confirm that `type`, `data`, `xField`, and `yField` are coherent, and verify that every displayed quantity is grounded in the slides or explicitly labeled as an idealized teaching example.
+18. If external code or data was created, verify that the script path, output path, delimiter/encoding, column meanings, and import format are clear; do not claim that user-side execution succeeded unless the user provides the generated output.
+19. Confirm every screenshot uses a note-relative Obsidian wikilink, points to an existing image beside the note, and sits next to relevant explanation. The destination file exists and contains the integrated result. Report any extraction uncertainty or unverified visual content to the user.
 
 ## Output behavior
 
