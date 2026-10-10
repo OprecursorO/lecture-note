@@ -82,6 +82,19 @@ Adapt the sequence to the actual course, but do not replace the lecturer's organ
 - Distinguish the slide's main claim from a teaching aid. Label genuinely added background as `Background`, `Prerequisite`, or `Note` when useful.
 - Do not turn the note into a shallow summary: retain definitions, assumptions, important limitations, and the relationship between steps.
 
+#### Universal professional-term teaching rule
+
+Professional terminology is part of the teaching task, not metadata to append after the note. Apply this rule to every subject and every output, including notes written for an advanced learner:
+
+1. Build a short **term map** before drafting. Group the source's important terms by the order in which the learner needs them: prerequisites, objects/data, operations or mechanisms, measurements/formulas, failure modes, and applications or system components.
+2. At the first meaningful appearance of each important term, keep the source-language term and provide a concise explanation of its meaning **and its role in the current lecture**. A translation alone is insufficient.
+3. For abstract, easily confused, or high-impact terms, add one of the following: a plain-language intuition, a minimum faithful example, an input/output description, a shape/unit/assumption, or a contrast with the nearest commonly confused term.
+4. When the vocabulary is dense, add a compact terminology table near the beginning of the relevant learning unit. Each row should answer at least: `term`, `what it means`, and `what the learner should look for or do with it`.
+5. Do not define every repeated occurrence again. Use the initial explanation, then use the standard term consistently; add a short reminder only when the term changes meaning across contexts.
+6. Preserve standard English, symbols, units, names, and notation when they improve traceability to the source. Do not replace a standard professional term with an obscure forced translation.
+
+The term map must follow the subject rather than a machine-learning template. For example, a chemistry note may organize terms by substance, reaction, measurement, and mechanism; a systems note may organize them by interface, data flow, resource, and failure mode.
+
 ### 5. Apply the language and notation policy
 
 - Write explanations in the user's requested language, defaulting to Chinese when no preference is stated, while keeping professional terms in the source language when that improves traceability to the slides.
@@ -184,13 +197,14 @@ Check the actual output, not just the draft:
 6. Search for formula-like code spans and repair them: subscripts/superscripts such as `x_i`, `x^(l)`, `y-hat_i`, Greek/error symbols such as `delta_v`, and operators such as `w^T x`, `argmax`, `partial`, and `ReLU` must render as math when they are equations.
 7. Check that math delimiters are not nested inside backticks or fenced code blocks, and that display formulas use valid Obsidian MathJax commands such as `\mathbf`, `\frac`, `\partial`, `\sum`, `\operatorname`, `\begin{cases}`, and `\delta`.
 8. Symbols, terminology, and capitalization are consistent, and professional terms remain in English as requested.
-9. Important technical terms are explained at first use with their meaning and role, especially terms that a beginner cannot infer from the English name alone.
-10. The note follows an appropriate teaching ladder: it states learning outcomes, motivates the topic, builds intuition, includes a minimum faithful example, then formalizes; difficult sections include retrieval questions and a forward bridge.
-11. The note is understandable to the stated audience without requiring hidden context, while additions beyond the slides are clearly background rather than presented as slide claims.
-12. Verify that every diagram is inline SVG, parses as valid XML, represents a useful relationship, and does not duplicate or contradict its explanation. Confirm no Mermaid code blocks remain.
-13. If a `chartsview` block was added, parse-check its YAML-like configuration, confirm that `type`, `data`, `xField`, and `yField` are coherent, and verify that every displayed quantity is grounded in the slides or explicitly labeled as an idealized teaching example.
-14. If external code or data was created, verify that the script path, output path, delimiter/encoding, column meanings, and import format are clear; do not claim that user-side execution succeeded unless the user provides the generated output.
-15. Confirm every screenshot uses a note-relative Obsidian wikilink, points to an existing image beside the note, and sits next to relevant explanation. The destination file exists and contains the integrated result. Report any extraction uncertainty or unverified visual content to the user.
+9. Confirm that a term map exists for the major source vocabulary, and that each important professional term is explained at first meaningful use with both meaning and role. For dense vocabulary, confirm that a nearby terminology table or equivalent grouped glossary answers what the learner should look for or do with each term.
+10. For abstract or easily confused terms, confirm that the note includes an intuition, faithful example, input/output description, shape/unit/assumption, or explicit contrast rather than a translation-only definition.
+11. The note follows an appropriate teaching ladder: it states learning outcomes, motivates the topic, builds intuition, includes a minimum faithful example, then formalizes; difficult sections include retrieval questions and a forward bridge.
+12. The note is understandable to the stated audience without requiring hidden context, while additions beyond the slides are clearly background rather than presented as slide claims.
+13. Verify that every diagram is inline SVG, parses as valid XML, represents a useful relationship, and does not duplicate or contradict its explanation. Confirm no Mermaid code blocks remain.
+14. If a `chartsview` block was added, parse-check its YAML-like configuration, confirm that `type`, `data`, `xField`, and `yField` are coherent, and verify that every displayed quantity is grounded in the slides or explicitly labeled as an idealized teaching example.
+15. If external code or data was created, verify that the script path, output path, delimiter/encoding, column meanings, and import format are clear; do not claim that user-side execution succeeded unless the user provides the generated output.
+16. Confirm every screenshot uses a note-relative Obsidian wikilink, points to an existing image beside the note, and sits next to relevant explanation. The destination file exists and contains the integrated result. Report any extraction uncertainty or unverified visual content to the user.
 
 ## Output behavior
 
