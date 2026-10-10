@@ -9,6 +9,21 @@ Create a usable study note from lecture slides, preserving the source material w
 
 The default output style is Chinese explanation with the source's professional terminology retained in its original language. Follow an explicit user language preference when one is given. Do not translate a standard term into an obscure synonym merely to force a translation.
 
+## Universal teaching ladder
+
+Lecture notes are not only archives of slide content; they should guide a learner from their current level to independent understanding. Apply this ladder to any subject, adapting the names and examples to the domain rather than forcing a machine-learning template:
+
+1. **Orient**: state the learner level, prerequisites, the purpose of the topic, and a small set of concrete outcomes. Tell the learner what they should be able to explain, calculate, compare, or do after the section.
+2. **Motivate**: begin with the problem, question, phenomenon, or task that makes the concept necessary. Explain what limitation the new idea addresses before introducing its terminology.
+3. **Build intuition**: give a plain-language explanation, analogy, diagram, or physical interpretation. Keep it explicitly marked as an intuition when it is not a literal mechanism.
+4. **Work a minimum example**: include the smallest faithful example that lets the learner see the process from input to result. For quantitative subjects, show intermediate steps; for conceptual subjects, use a concrete case; for procedural subjects, show one complete workflow.
+5. **Formalize**: introduce the source's standard terminology, notation, definitions, rules, equations, or mechanisms only after the learner has a mental model. Translate each symbol or step into an action or meaning immediately.
+6. **Connect and contrast**: explain how the new idea relates to prerequisite knowledge and distinguish commonly confused concepts. Merge repeated source material instead of restating it in separate blocks.
+7. **Check understanding**: end substantial sections with a few active-recall questions or a tiny task, followed by concise answers or a way to verify the result. Prefer questions that reveal whether the learner can use the idea, not only recognize its definition.
+8. **Bridge forward**: state what the learner can now understand next and which details can safely wait. Do not overload beginners with advanced edge cases before the core mechanism is secure.
+
+Use the full ladder for a difficult or unfamiliar topic, and a compressed version for short or already-familiar material. Do not invent examples that change the source's claims: label teaching examples, analogies, and background additions clearly, and keep them consistent with the source.
+
 ## Workflow
 
 ### 1. Establish the inputs and destination
@@ -19,6 +34,7 @@ The default output style is Chinese explanation with the source's professional t
 - If the user supplies an existing note as a style or content reference (for example, an earlier lecture note), inspect its headings, formula style, depth, and level of prerequisite explanation. Reuse its useful conventions without copying stale content or its language preference when the user has specified a new one.
 - Read the immediately preceding numbered note before drafting. Reuse its established terminology, prerequisite links, and diagram conventions. Treat the preceding note as a living context: update or extend an existing diagram when the new slides continue the same relationship, instead of creating a near-duplicate.
 - If several decks cover the same lecture, make a topic inventory before writing. Record which topics are new, repeated, expanded, or conflicting in each deck; resolve overlap in the main learning path instead of appending decks mechanically.
+- Before drafting, make a teaching map for the stated audience: identify prerequisites, the first motivating problem, the minimum worked example, the formal layer, likely confusions, and a short retrieval check. Use this map to order the note rather than preserving slide order when slide order is not a good learning order.
 - For embedded screenshots, use a stable folder beside the note: `assets/<note title>/`. Check for existing files first and do not overwrite user-owned assets.
 
 ### 2. Extract the slides faithfully
@@ -166,11 +182,12 @@ Check the actual output, not just the draft:
 6. Check that math delimiters are not nested inside backticks or fenced code blocks, and that display formulas use valid Obsidian MathJax commands such as `\mathbf`, `\frac`, `\partial`, `\sum`, `\operatorname`, `\begin{cases}`, and `\delta`.
 7. Symbols, terminology, and capitalization are consistent, and professional terms remain in English as requested.
 8. Important technical terms are explained at first use with their meaning and role, especially terms that a beginner cannot infer from the English name alone.
-9. The note is understandable to the stated audience without requiring hidden context, while additions beyond the slides are clearly background rather than presented as slide claims.
-10. Verify that every diagram is inline SVG, parses as valid XML, represents a useful relationship, and does not duplicate or contradict its explanation. Confirm no Mermaid code blocks remain.
-11. If a `chartsview` block was added, parse-check its YAML-like configuration, confirm that `type`, `data`, `xField`, and `yField` are coherent, and verify that every displayed quantity is grounded in the slides or explicitly labeled as an idealized teaching example.
-12. If external code or data was created, verify that the script path, output path, delimiter/encoding, column meanings, and import format are clear; do not claim that user-side execution succeeded unless the user provides the generated output.
-13. Confirm every screenshot uses a note-relative Obsidian wikilink, points to an existing image beside the note, and sits next to relevant explanation. The destination file exists and contains the integrated result. Report any extraction uncertainty or unverified visual content to the user.
+9. The note follows an appropriate teaching ladder: it states learning outcomes, motivates the topic, builds intuition, includes a minimum faithful example, then formalizes; difficult sections include retrieval questions and a forward bridge.
+10. The note is understandable to the stated audience without requiring hidden context, while additions beyond the slides are clearly background rather than presented as slide claims.
+11. Verify that every diagram is inline SVG, parses as valid XML, represents a useful relationship, and does not duplicate or contradict its explanation. Confirm no Mermaid code blocks remain.
+12. If a `chartsview` block was added, parse-check its YAML-like configuration, confirm that `type`, `data`, `xField`, and `yField` are coherent, and verify that every displayed quantity is grounded in the slides or explicitly labeled as an idealized teaching example.
+13. If external code or data was created, verify that the script path, output path, delimiter/encoding, column meanings, and import format are clear; do not claim that user-side execution succeeded unless the user provides the generated output.
+14. Confirm every screenshot uses a note-relative Obsidian wikilink, points to an existing image beside the note, and sits next to relevant explanation. The destination file exists and contains the integrated result. Report any extraction uncertainty or unverified visual content to the user.
 
 ## Output behavior
 
