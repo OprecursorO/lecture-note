@@ -9,6 +9,21 @@ Create a usable study note from lecture slides, preserving the source material w
 
 The default output style is Chinese explanation with the source's professional terminology retained in its original language. Follow an explicit user language preference when one is given. Do not translate a standard term into an obscure synonym merely to force a translation.
 
+## Cross-disciplinary routing
+
+This skill is domain-neutral. Before drafting, classify the source by the kind of objects it studies, then adapt the teaching vocabulary and examples to that domain:
+
+| Domain shape | Typical object groups | Useful local questions |
+|---|---|---|
+| mathematical / quantitative | quantities, assumptions, operators, measurements | What is defined, what is assumed, and how is it calculated? |
+| computational / systems | interfaces, data/control flow, resources, states, failure modes | What enters the system, where does it move, and what limits it? |
+| experimental science | entities, conditions, mechanisms, observations, uncertainty | What is observed, under which conditions, and what evidence supports the claim? |
+| engineering / design | requirements, components, constraints, tradeoffs, verification | Which requirement is being satisfied, at what cost, and how is it checked? |
+| humanities / social sciences | actors, concepts, sources, chronology, interpretations | Who or what is being described, what is the evidence, and where do interpretations differ? |
+| procedural / professional | inputs, roles, steps, decisions, outputs, exceptions | What must be done, in what order, and how is success verified? |
+
+Use the closest shape or combine two when needed. Do not force every subject into a machine-learning or hardware vocabulary. Practitioner lenses, diagrams, equations, charts, examples, and retrieval questions should be selected from the source's actual discipline.
+
 ## Universal teaching ladder
 
 Lecture notes are not only archives of slide content; they should guide a learner from their current level to independent understanding. Apply this ladder to any subject, adapting the names and examples to the domain rather than forcing a machine-learning template:
@@ -121,14 +136,15 @@ Adapt the sequence to the actual course, but do not replace the lecturer's organ
 
 Professional terminology is part of the teaching task, not metadata to append after the note. Apply this rule to every subject and every output, including notes written for an advanced learner:
 
-1. Build a short **term map** before drafting. Group the source's important terms by the order in which the learner needs them: prerequisites, objects/data, operations or mechanisms, measurements/formulas, failure modes, and applications or system components.
-2. At the first meaningful appearance of each important term, keep the source-language term and provide a concise explanation of its meaning **and its role in the current lecture**. A translation alone is insufficient.
-3. For abstract, easily confused, or high-impact terms, add one of the following: a plain-language intuition, a minimum faithful example, an input/output description, a shape/unit/assumption, or a contrast with the nearest commonly confused term.
-4. When the vocabulary is dense, add a compact terminology table near the beginning of the relevant learning unit. Each row should answer at least: `term`, `what it means`, and `what the learner should look for or do with it`.
-5. Do not define every repeated occurrence again. Use the initial explanation, then use the standard term consistently; add a short reminder only when the term changes meaning across contexts.
-6. Preserve standard English, symbols, units, names, and notation when they improve traceability to the source. Do not replace a standard professional term with an obscure forced translation.
+1. Build a **layered term roadmap** before drafting. Order terms by the section where the learner first needs them, rather than placing all later vocabulary in an opening glossary. A useful generic ladder is: prerequisites and objects -> operations/mechanisms -> measurements/formulas -> failure modes/tradeoffs -> applications/system components. Rename the layers to fit the subject.
+2. At the beginning of the note, show only a compact roadmap: `section or level -> terms introduced there -> what the learner should be able to do`. Do not ask a beginner to pre-memorize terms from later sections.
+3. At the first meaningful appearance in the relevant section, keep the source-language term and explain its meaning **and its role in that local problem**. A translation alone is insufficient. Add a small `New terms` line or table when a section introduces several related terms.
+4. For abstract, easily confused, or high-impact terms, add one of the following at that point: a plain-language intuition, a minimum faithful example, an input/output description, a shape/unit/assumption, or a contrast with the nearest commonly confused term.
+5. If a full lookup glossary is useful, place it after the learning path or label it `Reference glossary (not a prerequisite)`. It must not replace first-use explanations or turn the opening roadmap into an exhaustive list.
+6. Do not define every repeated occurrence again. Use the initial explanation, then use the standard term consistently; add a short reminder only when the term changes meaning across contexts.
+7. Preserve standard English, symbols, units, names, and notation when they improve traceability to the source. Do not replace a standard professional term with an obscure forced translation.
 
-The term map must follow the subject rather than a machine-learning template. For example, a chemistry note may organize terms by substance, reaction, measurement, and mechanism; a systems note may organize them by interface, data flow, resource, and failure mode.
+The roadmap must follow the subject rather than a machine-learning template. For example, a chemistry note may stage terms as substance -> reaction -> measurement -> mechanism; a systems note may stage them as interface -> data flow -> resource -> failure mode; a history note may stage them as actors -> events -> sources -> interpretations. The order should be visible in the note and should match the actual section order.
 
 ### 5. Apply the language and notation policy
 
@@ -232,7 +248,7 @@ Check the actual output, not just the draft:
 6. Search for formula-like code spans and repair them: subscripts/superscripts such as `x_i`, `x^(l)`, `y-hat_i`, Greek/error symbols such as `delta_v`, and operators such as `w^T x`, `argmax`, `partial`, and `ReLU` must render as math when they are equations.
 7. Check that math delimiters are not nested inside backticks or fenced code blocks, and that display formulas use valid Obsidian MathJax commands such as `\mathbf`, `\frac`, `\partial`, `\sum`, `\operatorname`, `\begin{cases}`, and `\delta`.
 8. Symbols, terminology, and capitalization are consistent, and professional terms remain in English as requested.
-9. Confirm that a term map exists for the major source vocabulary, and that each important professional term is explained at first meaningful use with both meaning and role. For dense vocabulary, confirm that a nearby terminology table or equivalent grouped glossary answers what the learner should look for or do with each term.
+9. Confirm that a layered term roadmap exists for the major source vocabulary, that later terms are not required before their section, and that each important professional term is explained at first meaningful use with both meaning and local role. For dense vocabulary, confirm that each learning unit has a nearby `New terms` table or equivalent grouped glossary answering what the learner should look for or do with each term; any exhaustive glossary must be labeled as a non-prerequisite reference.
 10. For abstract or easily confused terms, confirm that the note includes an intuition, faithful example, input/output description, shape/unit/assumption, or explicit contrast rather than a translation-only definition.
 11. The note follows an appropriate teaching ladder: it states learning outcomes, introduces the overall problem briefly, then locally motivates each major concept, builds intuition, includes a minimum faithful example, and formalizes; difficult sections include a forward bridge.
 12. Motivation is distributed at the point of need and follows a visible gradient: `learner-visible problem -> local constraint/failure -> design choice -> mechanism -> benefit -> tradeoff/boundary -> next concept`. A single overview motivation does not count as coverage for all later sections.
