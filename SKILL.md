@@ -40,6 +40,21 @@ Lecture notes are not only archives of slide content; they should guide a learne
 10. **Check understanding**: end substantial sections with a few active-recall questions or a tiny task, followed by concise answers or a way to verify the result. Prefer questions that reveal whether the learner can use the idea, not only recognize its definition. If the user asks for explanation without exercises, omit the questions while retaining the worked example.
 11. **Bridge forward**: state what the learner can now understand next and which details can safely wait. Do not overload beginners with advanced edge cases before the core mechanism is secure.
 
+### Guided-textbook mode (default for learning requests)
+
+When the user says they want to learn from the note, asks to be taught from zero, or gives a beginner audience, write the note as a continuous, self-contained textbook rather than as a summary or assignment sheet. Apply these rules across every discipline:
+
+1. **Teach in dependency order**: introduce only the prerequisites needed for the current section, then motivate the local problem, explain the intuition, work through one complete example, formalize the concept, and connect it to the next section. Do not require the learner to consult hidden background knowledge.
+2. **Explain the whole path**: show how the source's objects enter the system or argument, how each transformation changes them, and how the final result is interpreted. For quantitative material, show intermediate values and units; for conceptual material, show a complete concrete case; for procedural material, show one end-to-end workflow.
+3. **Teach every important term at first use**: give the original professional term, a plain-language meaning, its local role, and the nearest likely confusion. A term roadmap may preview later vocabulary, but later terms must not be prerequisites for earlier sections.
+4. **Separate learner content from reference content**: keep advanced edge cases, exhaustive glossaries, source metadata, and optional implementations after the main explanation and label them clearly. Do not make the learner memorize a glossary before seeing the mechanism.
+5. **Use professional perspective as explanation**: after the beginner explanation, add the relevant practitioner tradeoff, such as implementation, memory, verification, performance, cost, or deployment. Explain what is being optimized and what can fail. Do not replace the teaching path with industry jargon.
+6. **Do not turn learning into homework by default**: omit sections titled `作业`, `练习`, `自测题`, or equivalent unless the user explicitly requests exercises. Worked examples, answered checks, optional experiments, and “what this figure shows” paragraphs are allowed, but do not ask the learner to submit work, record results, or solve unanswered questions as a condition of understanding.
+7. **Make experiments optional demonstrations**: when code or experiments are useful, first explain the phenomenon in the note, then label the code as an optional way to visualize or verify it. Include what the learner should see and why it matters; do not present parameter sweeps or implementation tasks as required homework.
+8. **End with an integrated recap**: prefer a short end-to-end learning chain and a clear statement of what the learner can now understand. Use recall questions only if the user requests them or if they are immediately answered in the note; never leave an unexplained exercise at the end.
+
+The guided-textbook mode changes presentation, not source fidelity. Preserve the lecture's claims, cases, limitations, and uncertainty, and label any added background or teaching example.
+
 ### Motivation gradient and external background
 
 Use a **motivation gradient** across the note rather than a motivation dump:
@@ -82,7 +97,7 @@ Use the full ladder for a difficult or unfamiliar topic, and a compressed versio
 - If the user supplies an existing note as a style or content reference (for example, an earlier lecture note), inspect its headings, formula style, depth, and level of prerequisite explanation. Reuse its useful conventions without copying stale content or its language preference when the user has specified a new one.
 - Read the immediately preceding numbered note before drafting. Reuse its established terminology, prerequisite links, and diagram conventions. Treat the preceding note as a living context: update or extend an existing diagram when the new slides continue the same relationship, instead of creating a near-duplicate.
 - If several decks cover the same lecture, make a topic inventory before writing. Record which topics are new, repeated, expanded, or conflicting in each deck; resolve overlap in the main learning path instead of appending decks mechanically.
-- Before drafting, make a teaching map for the stated audience: identify prerequisites, the first motivating problem, the minimum worked example or case, the formal layer, likely confusions, and a short retrieval check. Use this map to order the note rather than preserving slide order when slide order is not a good learning order.
+- Before drafting, make a teaching map for the stated audience: identify prerequisites, the first motivating problem, the minimum worked example or case, the formal layer, likely confusions, and (when requested) a short retrieval check. In guided-textbook mode, use this map to order a continuous explanation rather than preserving slide order or producing an assignment checklist.
 - Add a **motivation map** to the teaching map: for every major topic, record `local learner-visible problem -> constraint/failure -> design choice/method -> benefit -> tradeoff or boundary -> source case -> next concept`. Use it to place motivation at the point where the learner needs it, rather than collecting all rationale in one introductory chapter.
 - For topics with real engineering tradeoffs, add a **practitioner-lens map**: record which two or three perspectives matter, what each optimizes, and what failure or cost each perspective exposes. Use it to deepen the motivation without turning the note into unsupported industry storytelling.
 - For embedded screenshots, use a stable folder beside the note: `assets/<note title>/`. Check for existing files first and do not overwrite user-owned assets.
@@ -161,7 +176,7 @@ The roadmap must follow the subject rather than a machine-learning template. For
 - Prefer one meaningful top-level title and a single continuous section numbering scheme unless the user explicitly requests separate notes.
 - Use headings that reflect concepts, not slide numbers. Combine repeated explanations of the same idea; retain the clearer explanation and merge missing details into it.
 - Place equations immediately beside the explanation they support. Follow a formula with a plain-language interpretation when the audience is new.
-- End with a compact learning chain, self-check questions, or takeaway only when it helps the requested study use. Keep the explanation in the established language style and do not repeat the whole note in a second summary section.
+- End with a compact learning chain or takeaway when it helps the requested study use. Add self-check questions only when the user requests exercises or when every question is immediately answered. Keep the explanation in the established language style and do not repeat the whole note in a second summary section.
 - Write to the requested Obsidian path. For an existing vault, the Obsidian CLI may be used for reading, searching, or opening the note when available; direct file editing is acceptable when it is the reliable local path.
 
 ### 7. Add diagrams only when they improve understanding
