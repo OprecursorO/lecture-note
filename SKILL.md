@@ -85,6 +85,23 @@ These are complementary viewpoints, not a demand for consensus. Present the begi
 
 When the slides omit background needed to explain a motivation or tradeoff, external research may be used if it materially improves understanding. Prefer primary or authoritative sources such as standards, official manuals, peer-reviewed papers, textbooks from the course, or official documentation. Search only for the missing context, verify the claim against the source where possible, and label the addition as `Background` or `External context`; do not let web material silently replace or contradict the lecture. Record concise source links or citations when external claims affect the note's explanation. If no reliable source is available, state the uncertainty instead of inventing a rationale.
 
+### Visual-first learning aids
+
+Use visual material whenever it makes a relationship, mechanism, spatial arrangement, transformation, comparison, or real-world example easier for a beginner to understand. The goal is not to decorate the note or increase the image count; each image must answer a learning question that prose, a formula, or an existing diagram would answer less clearly.
+
+Choose the most faithful and maintainable visual source in this order:
+
+1. The original slide or a cropped/rendered detail from the supplied deck when it contains a worked example, architecture, chart, annotated process, or comparison that matters.
+2. An existing local image or diagram in the vault when it is clear, relevant, and not user-owned material that should be overwritten.
+3. A new inline SVG or locally generated educational figure when the relationship is precise and no source image is needed.
+4. An online image from a reliable source when it provides genuine context or intuition that the slides cannot provide. Prefer official documentation, university course pages, research papers, Wikimedia Commons, museum/library collections, or clearly licensed educational media. Search only for the missing visual context, verify the image and its caption against the source page, and record the source URL, creator/organization, license or usage note, and access date near the image or in a compact `Image source` note.
+
+For online images, prefer a stable source page over an opaque image-host URL. Do not silently download or embed copyrighted stock images, images without provenance, misleading search-result thumbnails, or visuals whose license cannot be determined. When remote embedding is unreliable or the note should remain portable, use a local copy only when the source permits it, preserve the attribution and source URL, and use a descriptive stable filename under `assets/<note title>/`. Never claim that an image is from the slides when it is external.
+
+Place the image immediately after the concept it explains and add one or two sentences answering: what should the learner look at, and what conclusion should they draw? Keep the surrounding explanation self-contained because images may fail to load, render differently across themes, or be inaccessible. Add meaningful alt text for Markdown images where supported. Do not use a screenshot or online image to hide an unreadable formula, replace a required explanation, or make a claim that the image itself does not support.
+
+Before adding an image, ask whether it improves understanding enough to justify visual attention. Use a diagram, chart, or table instead when exact values and relationships matter more than photographic context. For technical subjects, combine real-world context images with faithful mechanism diagrams: the former motivates, while the latter explains how the system works. When a helpful image cannot be sourced reliably, state that limitation and create a clearly labeled teaching diagram instead.
+
 Use the full ladder for a difficult or unfamiliar topic, and a compressed version for short or already-familiar material. Do not invent examples that change the source's claims: label teaching examples, analogies, and background additions clearly, and keep them consistent with the source.
 
 ## Workflow
@@ -109,6 +126,7 @@ Use the full ladder for a difficult or unfamiliar topic, and a compressed versio
 - Select screenshots by learning value: render and embed pages whose original layout, worked example, architecture, chart, or annotated process adds information that prose cannot preserve as clearly. Do not screenshot every slide or use screenshots instead of explaining the material.
 - For PDFs, use an available renderer (such as `pdftoppm`) to export selected pages as PNGs. Use descriptive stable names that include a short source identifier and page number, such as `NNII-15.png`, `thermo-08.png`, or `history-12.png`, and save them under `assets/<note title>/` beside the note.
 - Insert each screenshot immediately after the explanation it supports using an Obsidian embed, for example `![[assets/2 Neural Network/NNII-15.png]]`. Keep links relative to the note; do not reference temporary render folders or machine-specific absolute paths. Mention unreadable or uncertain visual content rather than guessing.
+- Also run a visual-aid pass after the slide extraction: identify concepts that remain abstract, spatial, process-oriented, or hard to compare in prose, then add only the highest-value local, generated, or online visuals according to the `Visual-first learning aids` rules. Record external attribution and put a nearby interpretation sentence in the note.
 - Keep terminology and claims grounded in the slides. Do not invent experiments, references, results, or definitions that are not supported by the source.
 - Mark any uncertainty caused by unreadable or missing slide content instead of silently guessing.
 
@@ -274,6 +292,7 @@ Check the actual output, not just the draft:
 17. If a `chartsview` block was added, parse-check its YAML-like configuration, confirm that `type`, `data`, `xField`, and `yField` are coherent, and verify that every displayed quantity is grounded in the slides or explicitly labeled as an idealized teaching example.
 18. If external code or data was created, verify that the script path, output path, delimiter/encoding, column meanings, and import format are clear; do not claim that user-side execution succeeded unless the user provides the generated output.
 19. Confirm every screenshot uses a note-relative Obsidian wikilink, points to an existing image beside the note, and sits next to relevant explanation. The destination file exists and contains the integrated result. Report any extraction uncertainty or unverified visual content to the user.
+20. Confirm every added visual has a clear teaching purpose, nearby interpretation text, and usable alt text or accessible description; external images have a reliable source URL plus creator/license or usage note, and no image is used as a substitute for necessary prose or formal reasoning.
 
 ## Output behavior
 
